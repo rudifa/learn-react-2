@@ -51,58 +51,32 @@ function ReactNotes(props) {
 }
 
 const notes1 = [note1, note1];
-/* 
-class Note extends React.Component {
-  render() {
-    return (
-      <div>
-        <h3>{this.props.note.title}</h3>
-        <ul>{this.props.note.content.map((topic) => Topic(topic))}</ul>
-      </div>
-    );
-  }
-}
- */
 
 function Note(props) {
   let c = props.note.content.count;
   return (
     <div>
       <h3>{props.note.title}</h3>
-      <ul>ouch</ul>
-      <RenderList numbers={props.note.content} />
+      <RenderList items={props.note.content} />
     </div>
   );
 }
-
-// {props.content.map((line) => <li>{line}</li>)}
-
-function Topic1(topic) {
-  return <li>{topic}</li>;
-}
-
-function Topic2(topic) {
-  const lines = topic.map((line) => <li>{line}</li>);
-  return <ul>{lines}</ul>;
-}
-
-//{ this.searchResultsComponents.map((it, index) => <it key={index} />) }
 
 function RenderItem(props) {
   return <li>{props.value}</li>;
 }
 
 function RenderList(props) {
-  const numbers = props.numbers;
-  const listItems = numbers.map((renderedItem, index) => (
-    <RenderItem key={index} value={renderedItem} />
+  const items = props.items;
+  const listItems = items.map((item, index) => (
+    <RenderItem key={index} value={item} />
   ));
   return <ul>{listItems}</ul>;
 }
 
 /* const numbers = ["123", 2, 3, 4, 5, 5];
 ReactDOM.render(
-  <RenderList numbers={numbers} />,
+  <RenderList items={numbers} />,
   document.getElementById("root")
 ) */
 
