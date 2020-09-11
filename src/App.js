@@ -2,18 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./styles.css";
 
-function Blog(props) {
+function ReactNotes(props) {
   const sidebar = (
     <ul>
-      {props.posts.map((post) => (
-        <li key={post.id}>{post.title}</li>
+      {props.notes.map((note) => (
+        <li key={note.id}>{note.title}</li>
       ))}
     </ul>
   );
-  const content = props.posts.map((post) => (
-    <div key={post.id}>
-      <h3>{post.title}</h3>
-      <p>{post.content}</p>
+  const content = props.notes.map((note) => (
+    <div key={note.id}>
+      <h3>{note.title}</h3>
+      <p>{note.content}</p>
     </div>
   ));
   return (
@@ -25,7 +25,7 @@ function Blog(props) {
   );
 }
 
-const posts = [
+const notes = [
   { id: 1, title: "Virtual DOM", content: "..." },
   { id: 2, title: "Components have .state, .props", content: "..." },
   { id: 3, title: "Installation alternatives", content: "Webpack" },
@@ -37,17 +37,20 @@ const posts = [
   }
 ];
 
-class Post extends React.Component {
-  state = {
-    title: "Post One",
-    content: ["This is the first phrase", "Second phrase"]
-  };
+const note1 = {
+  title: "Note One",
+  content: ["This is the first phrase", "Second phrase"]
+};
+
+const notes1 = [note1, note1];
+
+class Note extends React.Component {
   render() {
     return (
       <div>
-        <h3>{this.state.title}</h3>
+        <h3>{this.props.note.title}</h3>
         <ul>
-          {this.state.content.map((topic) => (
+          {this.props.note.content.map((topic) => (
             <li>{topic}</li>
           ))}
         </ul>
@@ -71,22 +74,21 @@ function RenderList(props) {
   return <ul>{listItems}</ul>;
 }
 
-const numbers = ["123", 2, 3, 4, 5, 5];
+/* const numbers = ["123", 2, 3, 4, 5, 5];
 ReactDOM.render(
   <RenderList numbers={numbers} />,
   document.getElementById("root")
 );
+ */
 
-//ReactDOM.render(<Blog posts={posts} />, document.getElementById("root"));
 export default function App() {
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <h1>Hello Learn React</h1>
       <hr />
-      <Blog posts={posts} />
+      <ReactNotes notes={notes} />
       <hr />
-      <Post />
+      <Note note={note1} />
       <hr />
     </div>
   );
