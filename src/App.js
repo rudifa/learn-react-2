@@ -42,22 +42,47 @@ function ReactNotes(props) {
     </div>
   ));
   return (
-    <div>
-      {sidebar}
+    <span>
+      <div>
+        {sidebar}
+        <hr />
+        {content}
+      </div>
       <hr />
-      {content}
+      <hr />
+      <div>
+        <RenderListOfStrings items={props.notes.map((note) => note.title)} />
+        <hr />
+        <ListOfNotes notes={props.notes} />
+      </div>
+    </span>
+  );
+}
+const ho = () => {
+  return <p>HO</p>;
+};
+
+function ListOfNotes(props) {
+  return (
+    <div>
+      <Note note={props.notes[1]} />
+      {props.notes.map((note) => (
+        <p>{note.title}</p>
+      ))}
     </div>
   );
 }
-
-const notes1 = [note1, note1];
+// TODO: how do I map over notes and render ech one with Note()?
+//{props.notes.map((note) => (<Note note={note} />))}
+//{props.notes.map((note, index) => "kkK" + String(123) + String({index}))}
+//{props.notes.map((note) => (<p></p>) }
+//{props.notes.map((note) => {ho()})}
 
 function Note(props) {
-  let c = props.note.content.count;
   return (
     <div>
       <h3>{props.note.title}</h3>
-      <RenderList items={props.note.content} />
+      <RenderListOfStrings items={props.note.content} />
     </div>
   );
 }
@@ -66,9 +91,8 @@ function RenderItem(props) {
   return <li>{props.value}</li>;
 }
 
-function RenderList(props) {
-  const items = props.items;
-  const listItems = items.map((item, index) => (
+function RenderListOfStrings(props) {
+  const listItems = props.items.map((item, index) => (
     <RenderItem key={index} value={item} />
   ));
   return <ul>{listItems}</ul>;
@@ -87,8 +111,9 @@ export default function App() {
       <hr />
       <ReactNotes notes={notes} />
       <hr />
-      {/* */}
+      {/* 
       <Note note={note1} />
+      */}
       <hr />
     </div>
   );
